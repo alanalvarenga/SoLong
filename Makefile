@@ -9,10 +9,10 @@ LIBFT = $(LIBFT_PATH)/libft.a
 LIBFTPRINTF = $(LIBFTPRINTF_PATH)/libftprintf.a
 LIBMLX = $(LIBMLX_PATH)/libmlx_Linux.a
 CC = cc
-CFLAGS = -Wall -Wextra -g3 -Werror -g
+CFLAGS = -Wall -Wextra -Werror -g3
 PATH_SRC = ./
-FILES = $(PATH_SRC)main.c $(PATH_SRC)map_utils.c $(PATH_SRC)map_utils2.c \
-		$(PATH_SRC)render_window.c \
+FILES = $(PATH_SRC)solong.c $(PATH_SRC)map_utils.c $(PATH_SRC)map_utils2.c \
+		$(PATH_SRC)render_window.c $(PATH_SRC)sprites.c $(PATH_SRC)movement.c \
 		$(PATH_SRC)GNL/get_next_line.c $(PATH_SRC)GNL/get_next_line_utils.c
 OBJECTS = $(FILES:.c=.o)
 LINKS = -L. -lXext -L. -lX11

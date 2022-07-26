@@ -6,7 +6,7 @@
 /*   By: alachris <alachris@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 20:01:29 by alachris          #+#    #+#             */
-/*   Updated: 2022/07/16 22:25:58 by alachris         ###   ########.fr       */
+/*   Updated: 2022/07/23 00:49:48 by alachris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,14 +66,18 @@ int	verify_character(t_mapinfo *map_info)
 	int	x;
 	int	y;
 
-	x = 0;
-	while (x < map_info->rows)
+	x = -1;
+	while (++x < map_info->rows)
 	{
-		y = 0;
-		while (y < map_info->columns)
+		y = -1;
+		while (++y < map_info->columns)
 		{
 			if (map_info->map[x][y] == 'P')
+			{
 				map_info->p++;
+				map_info->play_x = x;
+				map_info->play_y = y;
+			}
 			else if (map_info->map[x][y] == 'E')
 				map_info->e++;
 			else if (map_info->map[x][y] == 'C')
@@ -81,9 +85,7 @@ int	verify_character(t_mapinfo *map_info)
 			else if ((map_info->map[x][y] != '1')
 				&& (map_info->map[x][y] != '0'))
 				return (1);
-			y++;
 		}
-		x++;
 	}
 	return (0);
 }

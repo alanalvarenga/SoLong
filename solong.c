@@ -1,14 +1,15 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   solong.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alachris <alachris@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/14 22:33:49 by alachris          #+#    #+#             */
-/*   Updated: 2022/07/18 23:03:55 by alachris         ###   ########.fr       */
+/*   Created: 2022/07/22 21:29:43 by alachris          #+#    #+#             */
+/*   Updated: 2022/07/23 22:15:45 by alachris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 //#include <stdio.h> // APAGAR-------------
 #include "solong.h"
@@ -30,7 +31,7 @@ void    ft_mlx_pixel_put(t_data *img_data, int x, int y, int color)
 
 int main( int argc, char *argv[])
 {	
-	t_mapinfo map_info;
+	t_global global;
 	
 			
 	if (argc != 2)
@@ -38,13 +39,13 @@ int main( int argc, char *argv[])
 		ft_printf("Parametros errado");
 		//return (1);
 	}
-	fill_map(&map_info,argv);	
-	if (valid_map(&map_info) == 1)
+	fill_map(&global.map_info,&global.animation,argv);	
+	if (valid_map(&global.map_info) == 1)
 	{
 		ft_printf("\nmapa errado\n");
 		//return (1);
 	}
-	render_window(&map_info);
+	render_window(&global);
 	//ft_printf("\n\n");
 	//ft_printf("%d\n",map_info.columns);
 	// while(map_info.map[count])

@@ -6,7 +6,7 @@
 /*   By: alachris <alachris@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 22:33:53 by alachris          #+#    #+#             */
-/*   Updated: 2022/07/15 23:22:34 by alachris         ###   ########.fr       */
+/*   Updated: 2022/07/25 23:16:12 by alachris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ int valid_map(t_mapinfo *map_info)
 	return (0);
 }
 
-void	count_columns(t_mapinfo *map_info, char *str)
+void	count_columns(t_mapinfo *map_info, t_animation *animation, char *str)
 {
 	int	count;
 
@@ -107,9 +107,18 @@ void	count_columns(t_mapinfo *map_info, char *str)
 	map_info->p = 0;
 	map_info->c = 0;
 	map_info->e = 0;
+	map_info->got_colection = 0;
+	animation->exit_block = 1;
+	animation->exit_ok = 0;
+	animation->play_up = 0;
+	animation->play_down = 0;
+	animation->play_right = 1;
+	animation->play_left = 0;
+	animation->moves = 0;
+	animation->control = 1;
 }
 
-void	fill_map(t_mapinfo *map_info, char *argv[])
+void	fill_map(t_mapinfo *map_info,t_animation *animation, char *argv[])
 {
 	int fd;
 	int i;
@@ -134,5 +143,5 @@ void	fill_map(t_mapinfo *map_info, char *argv[])
 	while(count < i)
 		map_info->map[count++] = get_next_line(fd);
 	close(fd);
-	count_columns(map_info, map_info->map[0]);
+	count_columns(map_info, animation, map_info->map[0]);
 }
