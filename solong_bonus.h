@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   solong.h                                           :+:      :+:    :+:   */
+/*   solong_bonus.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alachris <alachris@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/14 21:10:26 by alachris          #+#    #+#             */
-/*   Updated: 2022/08/03 02:16:26 by alachris         ###   ########.fr       */
+/*   Created: 2022/08/03 22:55:54 by alachris          #+#    #+#             */
+/*   Updated: 2022/08/04 00:29:16 by alachris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SOLONG_H
-# define SOLONG_H
+#ifndef SOLONG_BONUS_H
+# define SOLONG_BONUS_H
 # define ESC 65307
 # define EXIT 17
 
@@ -27,7 +27,8 @@ typedef struct s_mapinfo
 	int		columns;
 	int		p;
 	int		c;
-	int		e;	
+	int		e;
+	int		v;
 	int		got_colection;
 	int		x_actual;
 	int		y_actual;
@@ -75,6 +76,7 @@ typedef struct s_sprites
 	t_data	collec;
 	t_data	exit;
 	t_data	player[13];
+	t_data	enemy[4];
 }	t_sprites;
 
 typedef struct s_global
@@ -127,5 +129,6 @@ void			sprites_player_right(t_mlx *mlx, t_sprites *sprites);
 void			sprites_player_left(t_mlx *mlx, t_sprites *sprites);
 void			sprites_player_up(t_mlx *mlx, t_sprites *sprites);
 void			sprites_player_down(t_mlx *mlx, t_sprites *sprites);
+void			save_play_info(t_mapinfo *map_info, int x, int y);
 
 #endif

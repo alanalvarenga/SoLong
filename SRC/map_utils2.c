@@ -6,11 +6,11 @@
 /*   By: alachris <alachris@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 20:01:29 by alachris          #+#    #+#             */
-/*   Updated: 2022/07/23 00:49:48 by alachris         ###   ########.fr       */
+/*   Updated: 2022/08/03 02:07:11 by alachris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "solong.h"
+#include "../solong.h"
 
 int	size_rows(t_mapinfo *map_info)
 {
@@ -22,12 +22,12 @@ int	size_rows(t_mapinfo *map_info)
 	count_row = map_info->columns;
 	while (x < map_info->rows)
 	{
-		y = 0;		
+		y = 0;
 		while (map_info->map[x][y] != '\0')
 			y++;
-		if(x < (map_info->rows - 1))
+		if (x < (map_info->rows - 1))
 		{
-			if ((y - 1) != count_row)			
+			if ((y - 1) != count_row)
 				return (1);
 		}
 		else
@@ -40,7 +40,7 @@ int	size_rows(t_mapinfo *map_info)
 	return (0);
 }
 
-int verify_size(t_mapinfo *map_info)
+int	verify_size(t_mapinfo *map_info)
 {
 	if ((map_info->columns == 3) && (map_info->rows < 5))
 		return (1);
@@ -50,12 +50,12 @@ int verify_size(t_mapinfo *map_info)
 		return (1);
 	if (size_rows(map_info) == 1)
 	{
-		ft_printf("\nMapa com linha a menos ou a mais\n");
+		ft_printf("Error\nMap with more or less rows\n");
 		return (1);
 	}
-	if (map_info->map[map_info->rows-1][0] == '\0')
+	if (map_info->map[map_info->rows - 1][0] == '\0')
 	{
-		ft_printf("\nMapa com coluna a mais\n");	
+		ft_printf("Error\nMap with more columns\n");
 		return (1);
 	}
 	return (0);

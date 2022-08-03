@@ -4,22 +4,27 @@ LIBFT_PATH = ./Libft
 LIBFTPRINTF_PATH = ./FT_PRINTF
 LIBMLX_PATH = ./LibMLX
 INCLUDE = solong.h
-#INCLUDE_BONUS = ft_printf_bonus.h
+INCLUDE_BONUS = solong_bonus.h
 LIBFT = $(LIBFT_PATH)/libft.a
 LIBFTPRINTF = $(LIBFTPRINTF_PATH)/libftprintf.a
 LIBMLX = $(LIBMLX_PATH)/libmlx_Linux.a
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -g3
-PATH_SRC = ./
-FILES = $(PATH_SRC)solong.c $(PATH_SRC)map_utils.c $(PATH_SRC)map_utils2.c \
-		$(PATH_SRC)render_window.c $(PATH_SRC)sprites.c $(PATH_SRC)movement.c \
-		$(PATH_SRC)GNL/get_next_line.c $(PATH_SRC)GNL/get_next_line_utils.c
+PATH_SRC = ./SRC/
+PATH_SRC_BONUS = ./SRC_BONUS/
+FILES = $(PATH_SRC)solong.c $(PATH_SRC)map_utils.c $(PATH_SRC)map_utils2.c $(PATH_SRC)close.c \
+		$(PATH_SRC)render_window.c $(PATH_SRC)sprites.c $(PATH_SRC)movement.c $(PATH_SRC)animation_play.c \
+		$(PATH_SRC)sprites_player.c \
+		./GNL/get_next_line.c ./GNL/get_next_line_utils.c
 OBJECTS = $(FILES:.c=.o)
 LINKS = -L. -lXext -L. -lX11
-VAL = valgrind --leak-check=full --show-leak-kinds=all
-#FILES_BONUS = 
-#OBJECTS_BONUS = $(FILES_BONUS:.c=.o)
+FILES_BONUS = $(PATH_SRC_BONUS)solong_bonus.c $(PATH_SRC_BONUS)map_utils_bonus.c $(PATH_SRC_BONUS)map_utils2_bonus.c \
+			  $(PATH_SRC_BONUS)close_bonus.c $(PATH_SRC_BONUS)render_window_bonus.c $(PATH_SRC_BONUS)sprites_bonus.c \
+			  $(PATH_SRC_BONUS)movement_bonus.c $(PATH_SRC_BONUS)animation_play_bonus.c $(PATH_SRC_BONUS)sprites_player_bonus.c \
+			  ./GNL/get_next_line.c ./GNL/get_next_line_utils.c
+OBJECTS_BONUS = $(FILES_BONUS:.c=.o)
 RM = rm -f
+VAL = valgrind --leak-check=full --show-leak-kinds=all --log-file=valgrind.txt
 
 all: $(NAME)
 
@@ -37,15 +42,16 @@ $(NAME): $(OBJECTS)
 $(PATH_SRC)%.o: $(PATH_SRC)%.c $(INCLUDE)
 		@ $(CC) $(CFLAGS) -c $< -o $@
 
-#$(NAME_BONUS): $(OBJECTS_BONUS) 
-#		@ make -C $(LIBFT_PATH)
-#		@ cp $(LIBFT) $(NAME_BONUS)
+$(NAME_BONUS): $(OBJECTS_BONUS) 
+		make -C $(LIBFTPRINTF_PATH)
+		cp $(LIBFTPRINTF) $(NAME_BONUS)
 #		@ mv $(LIBFT) $(NAME_BONUS)
-#		@ ar -rcs $(NAME_BONUS) $(OBJECTS_BONUS) $(INCLUDE_BONUS)
+ 		make -C $(LIBMLX_PATH)
+		ar -rcs $(NAME_BONUS) $(LIBMLX) $(OBJECTS_BONUS) $(INCLUDE_BONUS)
 #		@ cp $(NAME_BONUS) $(NAME)
 
-#$(PATH_SRC_BONUS)%.o: $(PATH_SRC_BONUS)%.c $(INCLUDE_BONUS)
-#		@ $(CC) $(CFLAGS) -c $< -o $@
+$(PATH_SRC_BONUS)%.o: $(PATH_SRC_BONUS)%.c $(INCLUDE_BONUS)
+		@ $(CC) $(CFLAGS) -c $< -o $@
 
 clean:
 	make clean -C $(LIBFT_PATH)	
@@ -62,8 +68,8 @@ re: fclean all
 
 test: 
 	$(CC) $(CFLAGS) $(LINKS) $(FILES) $(NAME) $(LIBMLX)
-testeprint:
-	./a.out map.ber
+testprint:
+	./a.out ./maps/map.ber
 
 testb:
 	gcc main2.c -g $(CFLAGS) $(NAME_BONUS) && ./a.out
