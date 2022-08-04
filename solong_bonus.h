@@ -6,7 +6,7 @@
 /*   By: alachris <alachris@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/03 22:55:54 by alachris          #+#    #+#             */
-/*   Updated: 2022/08/04 00:29:16 by alachris         ###   ########.fr       */
+/*   Updated: 2022/08/05 00:58:59 by alachris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,20 +34,23 @@ typedef struct s_mapinfo
 	int		y_actual;
 	int		play_x;
 	int		play_y;
+	int		go_back;
 	char	**map;
 }	t_mapinfo;
 
 typedef struct s_animation
 {
-	int	play_up;
-	int	play_down;
-	int	play_right;
-	int	play_left;
-	int	exit_block;
-	int	exit_ok;
-	int	moves;	
-	int	control;
-	int	count;
+	char	*str;
+	int		play_up;
+	int		play_down;
+	int		play_right;
+	int		play_left;
+	int		exit_block;
+	int		exit_ok;
+	int		moves;	
+	int		control;
+	int		control_enemy;
+	int		count;
 }	t_animation;
 
 typedef struct s_mlx
@@ -130,5 +133,10 @@ void			sprites_player_left(t_mlx *mlx, t_sprites *sprites);
 void			sprites_player_up(t_mlx *mlx, t_sprites *sprites);
 void			sprites_player_down(t_mlx *mlx, t_sprites *sprites);
 void			save_play_info(t_mapinfo *map_info, int x, int y);
+void			animation_enemy(t_global *global);
+void			print_moves(t_mlx *mlx, t_animation *animation);
+void			move_enemy(t_mapinfo *map_info);
+void			move_enemy_left(t_mapinfo *map_info, int x, int *y);
+void			move_enemy_right(t_mapinfo *map_info, int x, int *y);
 
 #endif

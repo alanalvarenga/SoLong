@@ -6,7 +6,7 @@
 /*   By: alachris <alachris@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/03 22:53:27 by alachris          #+#    #+#             */
-/*   Updated: 2022/08/04 00:20:03 by alachris         ###   ########.fr       */
+/*   Updated: 2022/08/05 00:35:46 by alachris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,7 @@ void	count_columns(t_mapinfo *map_info, t_animation *animation, char *str)
 	map_info->c = 0;
 	map_info->e = 0;
 	map_info->v = 0;
+	map_info->go_back = 0;
 	map_info->got_colection = 0;
 	animation->exit_block = 1;
 	animation->exit_ok = 0;
@@ -117,6 +118,7 @@ void	count_columns(t_mapinfo *map_info, t_animation *animation, char *str)
 	animation->play_left = 0;
 	animation->moves = 0;
 	animation->control = 1;
+	animation->control_enemy = 1;
 	animation->count = 0;
 }
 

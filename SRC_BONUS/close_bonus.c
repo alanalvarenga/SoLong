@@ -6,7 +6,7 @@
 /*   By: alachris <alachris@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/03 22:52:11 by alachris          #+#    #+#             */
-/*   Updated: 2022/08/04 00:19:08 by alachris         ###   ########.fr       */
+/*   Updated: 2022/08/04 21:42:21 by alachris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,12 @@ void	free_images_player(t_global *global)
 	while (i < 13)
 	{
 		mlx_destroy_image(global->mlx_d.mlx, global->sprites.player[i].img);
+		i++;
+	}
+	i = 1;
+	while (i < 4)
+	{
+		mlx_destroy_image(global->mlx_d.mlx, global->sprites.enemy[i].img);
 		i++;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: alachris <alachris@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/03 22:54:29 by alachris          #+#    #+#             */
-/*   Updated: 2022/08/04 00:19:22 by alachris         ###   ########.fr       */
+/*   Updated: 2022/08/05 00:28:58 by alachris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ int	action_loop(t_global *global)
 	render_map(&global->mlx_d, &global->map_info, &global->sprites,
 		&global->animation);
 	animation_player(global);
+	animation_enemy(global);
 	return (0);
 }
 
@@ -29,6 +30,7 @@ int	key_press(int key, t_global *global)
 	if (ft_strchr("wasd", key))
 	{
 		move_player(key, global);
+		move_enemy(&global->map_info);
 	}
 	return (0);
 }
@@ -45,19 +47,19 @@ int	render_map(t_mlx *mlx, t_mapinfo *map_info, t_sprites *sprites,
 		mlx->y = 0;
 		map_info->y_actual = 0;
 		while (mlx->y < (map_info->rows * 40))
-		{	
+		{
 			sprite_print(mlx, map_info, sprites, animation);
 			mlx->y += 40;
 			map_info->y_actual++;
-		}		
+		}
 		mlx->x += 40;
 		map_info->x_actual++;
-	}	
+	}
 	return (0);
 }
 
 int	close_game(t_global *global)
-{	
+{
 	free_map(&global->map_info);
 	free_images(global);
 	free_mlx(global);

@@ -6,7 +6,7 @@
 /*   By: alachris <alachris@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/03 22:51:12 by alachris          #+#    #+#             */
-/*   Updated: 2022/08/04 00:18:51 by alachris         ###   ########.fr       */
+/*   Updated: 2022/08/04 20:49:07 by alachris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,4 +79,19 @@ void	animation_player(t_global *global)
 		animation_up(global);
 	else if (global->animation.play_down == 1)
 		animation_down(global);
+}
+
+void	animation_enemy(t_global *global)
+{
+	if (global->animation.count >= 0 && global->animation.count <= 150)
+			global->animation.control_enemy = 1;
+	else if ((global->animation.count >= 151)
+		&& (global->animation.count <= 300))
+			global->animation.control_enemy = 2;
+	else if ((global->animation.count >= 301)
+		&& (global->animation.count <= 450))
+			global->animation.control_enemy = 1;
+	else if ((global->animation.count >= 451)
+		&& (global->animation.count <= 600))
+			global->animation.control_enemy = 3;
 }

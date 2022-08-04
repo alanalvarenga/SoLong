@@ -20,7 +20,8 @@ OBJECTS = $(FILES:.c=.o)
 LINKS = -L. -lXext -L. -lX11
 FILES_BONUS = $(PATH_SRC_BONUS)solong_bonus.c $(PATH_SRC_BONUS)map_utils_bonus.c $(PATH_SRC_BONUS)map_utils2_bonus.c \
 			  $(PATH_SRC_BONUS)close_bonus.c $(PATH_SRC_BONUS)render_window_bonus.c $(PATH_SRC_BONUS)sprites_bonus.c \
-			  $(PATH_SRC_BONUS)movement_bonus.c $(PATH_SRC_BONUS)animation_play_bonus.c $(PATH_SRC_BONUS)sprites_player_bonus.c \
+			  $(PATH_SRC_BONUS)movement_bonus.c $(PATH_SRC_BONUS)animation_play_bonus.c \
+			  $(PATH_SRC_BONUS)sprites_player_bonus.c $(PATH_SRC_BONUS)movement_enemy_bonus.c \
 			  ./GNL/get_next_line.c ./GNL/get_next_line_utils.c
 OBJECTS_BONUS = $(FILES_BONUS:.c=.o)
 RM = rm -f
@@ -31,24 +32,20 @@ all: $(NAME)
 bonus: $(NAME_BONUS)
 
 $(NAME): $(OBJECTS)
-		 make -C $(LIBFTPRINTF_PATH)
-		 cp $(LIBFTPRINTF) $(NAME)
-#		 mv $(LIBFTPRINTF) $(NAME)
-		 make -C $(LIBMLX_PATH)
-#		 cp $(LIBMLX) $(NAME)
-#		 mv $(LIBMLX) $(NAME)
-		 ar -rcs $(NAME) $(LIBMLX) $(OBJECTS) $(INCLUDE)
+		make -C $(LIBFTPRINTF_PATH)
+		cp $(LIBFTPRINTF) $(NAME)
+		make -C $(LIBMLX_PATH)
+		ar -rcs $(NAME) $(LIBMLX) $(OBJECTS) $(INCLUDE)
 
 $(PATH_SRC)%.o: $(PATH_SRC)%.c $(INCLUDE)
 		@ $(CC) $(CFLAGS) -c $< -o $@
 
-$(NAME_BONUS): $(OBJECTS_BONUS) 
+$(NAME_BONUS): $(OBJECTS_BONUS)
 		make -C $(LIBFTPRINTF_PATH)
 		cp $(LIBFTPRINTF) $(NAME_BONUS)
-#		@ mv $(LIBFT) $(NAME_BONUS)
- 		make -C $(LIBMLX_PATH)
+		make -C $(LIBMLX_PATH)
 		ar -rcs $(NAME_BONUS) $(LIBMLX) $(OBJECTS_BONUS) $(INCLUDE_BONUS)
-#		@ cp $(NAME_BONUS) $(NAME)
+		cp $(NAME_BONUS) $(NAME)
 
 $(PATH_SRC_BONUS)%.o: $(PATH_SRC_BONUS)%.c $(INCLUDE_BONUS)
 		@ $(CC) $(CFLAGS) -c $< -o $@
@@ -72,7 +69,10 @@ testprint:
 	./a.out ./maps/map.ber
 
 testb:
-	gcc main2.c -g $(CFLAGS) $(NAME_BONUS) && ./a.out
+	$(CC) $(CFLAGS) $(LINKS) $(FILES_BONUS) $(NAME_BONUS) $(LIBMLX)
+
+testbprint:
+	./a.out ./maps/map_bonus.ber
 
 .PHONY: all clean fclean re
 

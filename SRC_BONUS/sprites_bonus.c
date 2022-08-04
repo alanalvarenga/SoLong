@@ -6,7 +6,7 @@
 /*   By: alachris <alachris@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/03 22:54:58 by alachris          #+#    #+#             */
-/*   Updated: 2022/08/04 00:19:31 by alachris         ###   ########.fr       */
+/*   Updated: 2022/08/05 01:13:32 by alachris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,15 @@ void	fill_sprites(t_mlx *mlx, t_sprites *sprites)
 	sprites->exit.img = mlx_xpm_file_to_image(mlx->mlx,
 			"./images/shenlong.xpm", &sprites->exit.pos_x,
 			&sprites->exit.pos_y);
+	sprites->enemy[1].img = mlx_xpm_file_to_image(mlx->mlx,
+			"./images/vegeta_down_stand.xpm", &sprites->enemy[1].pos_x,
+			&sprites->enemy[1].pos_y);
+	sprites->enemy[2].img = mlx_xpm_file_to_image(mlx->mlx,
+			"./images/vegeta_down_left_leg.xpm", &sprites->enemy[2].pos_x,
+			&sprites->enemy[2].pos_y);
+	sprites->enemy[3].img = mlx_xpm_file_to_image(mlx->mlx,
+			"./images/vegeta_down_right_leg.xpm", &sprites->enemy[3].pos_x,
+			&sprites->enemy[3].pos_y);
 	sprites_player_right(mlx, sprites);
 	sprites_player_left(mlx, sprites);
 	sprites_player_up(mlx, sprites);
@@ -83,10 +92,22 @@ void	sprite_print(t_mlx *mlx, t_mapinfo *map_info, t_sprites *sprites,
 		&& (map_info->got_colection != map_info->c))
 		mlx_put_image_to_window(mlx->mlx, mlx->win, sprites->exit.img, mlx->x,
 			mlx->y);
+	else if (map_info->map[map_info->y_actual][map_info->x_actual] == 'V')
+		mlx_put_image_to_window(mlx->mlx, mlx->win,
+			sprites->enemy[animation->control_enemy].img, mlx->x, mlx->y);
 	else if (map_info->map[map_info->y_actual][map_info->x_actual] == 'P')
 	{		
 		mlx_put_image_to_window(mlx->mlx, mlx->win, sprites->floor.img,
 			mlx->x, mlx->y);
 		print_player(mlx, sprites, animation);
 	}
+	print_moves(mlx, animation);
+}
+
+void	print_moves(t_mlx *mlx, t_animation *animation)
+{
+	animation->str = ft_itoa(animation->moves);
+	mlx_string_put(mlx->mlx, mlx->win, 30, 30, 0xFFFFFF, "Moves: ");
+	mlx_string_put(mlx->mlx, mlx->win, 80, 30, 0xFFFFFF, animation->str);
+	free(animation->str);
 }
