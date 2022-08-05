@@ -6,7 +6,7 @@
 /*   By: alachris <alachris@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 21:10:26 by alachris          #+#    #+#             */
-/*   Updated: 2022/08/03 02:16:26 by alachris         ###   ########.fr       */
+/*   Updated: 2022/08/05 04:12:16 by alachris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 # include "./FT_PRINTF/ft_printf.h"
 # include "./GNL/get_next_line.h"
-# include "./LibMLX/mlx.h"
+# include <mlx.h>
 # include <fcntl.h> // open, close
 # include <stdlib.h>
 
