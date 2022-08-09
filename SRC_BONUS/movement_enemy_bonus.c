@@ -6,7 +6,7 @@
 /*   By: alachris <alachris@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 22:36:49 by alachris          #+#    #+#             */
-/*   Updated: 2022/08/09 21:15:37 by alachris         ###   ########.fr       */
+/*   Updated: 2022/08/09 21:20:24 by alachris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,13 +43,11 @@ void	move_enemy_left(t_mapinfo *map_info, int x, int *y)
 	{
 		map_info->map[x][*y] = '0';
 		map_info->map[x][*y - 1] = 'V';
-		//map_info->go_back = 2;
 	}
 	else if ((map_info->go_back == 2) && (map_info->map[x][*y - 1] == '0'))
 	{
 		map_info->map[x][*y] = '0';
 		map_info->map[x][*y - 1] = 'V';
-		//map_info->go_back = 0;
 		*y = map_info->columns;
 	}
 	else if (map_info->map[x][*y - 1] != '0')
