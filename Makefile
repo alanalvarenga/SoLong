@@ -60,6 +60,7 @@ fclean: clean
 	make fclean -C $(LIBFT_PATH)
 	make fclean -C $(LIBFTPRINTF_PATH)
 	$(RM) $(NAME) $(NAME_BONUS)
+	$(RM) ./so_long ./so_long_bonus valgrind.txt
 
 re: fclean all
 
@@ -72,7 +73,7 @@ so_long_bonus: $(NAME_BONUS)
 	$(CC) $(CFLAGS) $(LINKS) $(FILES_BONUS) $(NAME_BONUS) $(LIBMLX) -o so_long_bonus
 
 testprintb:
-	./so_long_bonus ./maps/map_bonus.ber
+	./so_long_bonus ./maps/map3.ber
 
 .PHONY: all clean fclean re bonus
 
