@@ -73,7 +73,7 @@ so_long_bonus: $(NAME_BONUS)
 	$(CC) $(CFLAGS) $(LINKS) $(FILES_BONUS) $(NAME_BONUS) $(LIBMLX) -o so_long_bonus
 
 testprintb:
-	./so_long_bonus ./maps/map3.ber
+	./so_long_bonus ./maps/map_bonus.ber
 
 .PHONY: all clean fclean re bonus
 
