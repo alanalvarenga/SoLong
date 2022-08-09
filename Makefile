@@ -63,12 +63,12 @@ fclean: clean
 
 re: fclean all
 
-so_long: 
+so_long: $(NAME)
 	$(CC) $(CFLAGS) $(LINKS) $(FILES) $(NAME) $(LIBMLX) -o so_long
 testprint:
 	./so_long ./maps/map.ber
 
-so_long_bonus:
+so_long_bonus: $(NAME_BONUS)
 	$(CC) $(CFLAGS) $(LINKS) $(FILES_BONUS) $(NAME_BONUS) $(LIBMLX) -o so_long_bonus
 
 testprintb:

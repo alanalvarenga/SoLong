@@ -6,7 +6,7 @@
 /*   By: alachris <alachris@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/03 22:53:27 by alachris          #+#    #+#             */
-/*   Updated: 2022/08/05 00:35:46 by alachris         ###   ########.fr       */
+/*   Updated: 2022/08/08 21:54:20 by alachris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ int	valid_map(t_mapinfo *map_info)
 	if (map_info->e < 1)
 		ft_printf("Error\nDont have at least 1 exit\n");
 	if (map_info->v < 1)
-		ft_printf("Error\nDont have at least 1 enemy");
+		ft_printf("Error\nDont have at least 1 enemy\n");
 	if ((map_info->p != 1) || (map_info->c < 1) || (map_info->e < 1)
 		|| (map_info->v < 1))
 		return (1);
