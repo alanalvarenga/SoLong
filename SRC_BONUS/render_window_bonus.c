@@ -6,7 +6,7 @@
 /*   By: alachris <alachris@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/03 22:54:29 by alachris          #+#    #+#             */
-/*   Updated: 2022/08/08 22:42:38 by alachris         ###   ########.fr       */
+/*   Updated: 2022/08/09 21:23:55 by alachris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,5 @@ void	render_window(t_global *global)
 	mlx_loop_hook(global->mlx_d.mlx, action_loop, (void *)global);
 	mlx_key_hook(global->mlx_d.win, key_press, (void *)global);
 	mlx_hook(global->mlx_d.win, EXIT, 0, close_game, (void *)global);
-	//mlx_hook(global->mlx_d.mlx,9,1L << 21,action_loop,(void *)global);
 	mlx_loop(global->mlx_d.mlx);
 }
