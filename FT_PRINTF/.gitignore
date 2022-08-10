@@ -1,0 +1,10 @@
+LICENSE.*
+README.md
+*.o
+*.out
+main.*
+main.c
+*.a
+TripotesterPrintf
+main2.c
+main2.*
