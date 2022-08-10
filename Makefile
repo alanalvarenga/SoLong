@@ -60,7 +60,6 @@ fclean: clean
 	make fclean -C $(LIBFT_PATH)
 	make fclean -C $(LIBFTPRINTF_PATH)
 	$(RM) $(NAME) $(NAME_BONUS)
-	$(RM) ./so_long ./so_long_bonus valgrind.txt
 
 re: fclean all
 
